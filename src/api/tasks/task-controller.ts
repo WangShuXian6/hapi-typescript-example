@@ -88,6 +88,7 @@ export default class TaskController {
     let tasks = await this.database.taskModel
       .find({ userId: userId })
       .lean(true)
+      // @ts-ignore
       .skip(skip)
       .limit(top);
 

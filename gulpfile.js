@@ -62,14 +62,37 @@ gulp.task('configs', (cb) => {
 /**
  * Build the project.
  */
-gulp.task('build', ['tslint', 'compile', 'configs'], () => {
+// gulp.task('build', ['tslint', 'compile', 'configs'], () => {
+//   console.log('Building the project ...');
+// });
+
+gulp.task('build', gulp.series('tslint', 'compile', 'configs', ()=> {
   console.log('Building the project ...');
-});
+  return new Promise(function(resolve, reject) {
+    console.log("1");
+    resolve();
+  });
+
+}));
 
 /**
  * Run tests.
  */
-gulp.task('test', ['build'], (cb) => {
+// gulp.task('test', ['build'], (cb) => {
+//   const envs = env.set({
+//     NODE_ENV: 'test'
+//   });
+
+//   gulp.src(['build/test/**/*.js'])
+//     .pipe(envs)
+//     .pipe(mocha({ exit: true }))
+//     .once('error', (error) => {
+//       console.log(error);
+//       process.exit(1);
+//     });
+// });
+
+gulp.task('test', gulp.series('build', (cb) =>{
   const envs = env.set({
     NODE_ENV: 'test'
   });
@@ -81,6 +104,11 @@ gulp.task('test', ['build'], (cb) => {
       console.log(error);
       process.exit(1);
     });
-});
+}));
 
-gulp.task('default', ['build']);
+//gulp.task('default', ['build']);
+
+gulp.task('default', gulp.series('build', function() {
+  
+  // Do something after a, b, and c are finished.
+}));

@@ -1,12 +1,17 @@
 {
-    "apps": [{
-        "exec_mode": "cluster",
-		"instances" : 4,
-        "script": "./build/src/index.js",
-        "name": "type-node",
-        "interpreter": "node",
-        "env": {
-            "NODE_ENV": "dev"
-        }
-    }]
+  "apps": [
+    {
+      "exec_mode": "cluster",
+      "instances": 4,
+      "script": "./build/src/index.js",
+      "name": "type-node",
+      "interpreter": "node",
+      "env": {
+        "NODE_ENV": "dev"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
 }

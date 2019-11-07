@@ -33,3 +33,42 @@ A NodeJS + HapiJS(17) with Typescript Starter kit to build standard projects.
 Running on port 5000 ex: localhost:5000/docs
 
 Have fun :)
+
+## 本地开发
+
+### 实时编译
+```bash
+npm run tsc-watch
+```
+
+### 实时重载代码
+```bash
+npm run watch
+```
+
+## 访问接口
+
+>localhost:5000/xxx
+
+## 编译部署
+
+### 打包
+```bash
+npm run build
+```
+
+### 运行
+```bash
+npm run start
+```
+
+## 查看接口文档
+
+>localhost:5000/docs
+
+
+## 数据库链接格式
+
+```
+mongodb://user:password@host:port/router
+```
