@@ -1,9 +1,6 @@
-FROM mhart/alpine-node:6.9.1
+FROM node:12.13.1 as builder
 
-MAINTAINER Talento90
-
-# create a specific user to run this container
-RUN adduser -S -D user-app
+MAINTAINER black
 
 # add files to container
 ADD . /app
@@ -11,17 +8,26 @@ ADD . /app
 # specify the working directory
 WORKDIR app
 
-RUN chmod -R 777 .
-
 # build process
 RUN npm install
 RUN npm run build
 RUN npm prune --production
 
+FROM node:12.13.1-alpine3.10
+
+COPY --from=builder /app /app
+
+# create a specific user to run this container
+RUN adduser -S -D user-app
+RUN chmod -R 777 /app
 # run the container using a specific user
 USER user-app
 
 EXPOSE 8080
 
+WORKDIR app
+
 # run application
 CMD ["npm", "start"]
+
+#docker image build -t app:v1 .

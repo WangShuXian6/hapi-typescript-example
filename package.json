@@ -19,7 +19,7 @@
     "start": "node build/src/index.js",
     "setup": "npm install",
     "test": "gulp test",
-    "watch": "nodemon --watch build/src build/src/index.js"
+    "watch": "nodemon --watch build/src build/src/index.js",
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
