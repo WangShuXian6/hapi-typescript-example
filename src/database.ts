@@ -21,6 +21,12 @@ export function init(config: IDataConfiguration): IDatabase {
 
   mongoDb.on("error", () => {
     console.log(`Unable to connect to database: ${config.connectionString}`);
+    setTimeout(() => {
+      Mongoose.connect(process.env.MONGO_URL || config.connectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      });
+    }, 10000);
   });
 
   mongoDb.once("open", () => {

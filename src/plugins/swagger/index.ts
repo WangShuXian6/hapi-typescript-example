@@ -1,11 +1,11 @@
 import { IPlugin, IPluginInfo } from "../interfaces";
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
 
 const register = async (server: Hapi.Server): Promise<void> => {
   try {
     return server.register([
-      require("inert"),
-      require("vision"),
+      require("@hapi/inert"),
+      require("@hapi/vision"),
       {
         plugin: require("hapi-swagger"),
         options: {

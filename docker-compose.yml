@@ -4,12 +4,16 @@ services:
     build: .
     environment:
       - PORT=8080
-      - MONGO_URL=mongodb:27017
+      - MONGO_URL=mongo:27017
     ports: 
       - "8080:8080"
-    links:
-      - mongodb
-  mongodb:
+    networks:
+      - backend
+  mongo:
     image: mongo:latest
     ports:
       - "27017:27017"
+    networks:
+      - backend
+networks:
+  backend:

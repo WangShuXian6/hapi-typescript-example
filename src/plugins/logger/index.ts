@@ -1,10 +1,10 @@
 import { IPlugin } from "../interfaces";
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
 
 const register = async (server: Hapi.Server): Promise<void> => {
   try {
     return server.register({
-      plugin: require("good"),
+      plugin: require("@hapi/good"),
       options: {
         ops: {
           interval: 1000
@@ -12,7 +12,7 @@ const register = async (server: Hapi.Server): Promise<void> => {
         reporters: {
           consoleReporter: [
             {
-              module: "good-squeeze",
+              module: "@hapi/good-squeeze",
               name: "Squeeze",
               args: [
                 {
@@ -24,7 +24,7 @@ const register = async (server: Hapi.Server): Promise<void> => {
               ]
             },
             {
-              module: "good-console"
+              module: "@hapi/good-console"
             },
             "stdout"
           ]

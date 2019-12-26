@@ -1,5 +1,5 @@
-import * as Hapi from "hapi";
-import * as Joi from "joi";
+import * as Hapi from "@hapi/hapi";
+import * as Joi from "@hapi/joi";
 import UserController from "./user-controller";
 import { UserModel } from "./user";
 import * as UserValidator from "./user-validator";

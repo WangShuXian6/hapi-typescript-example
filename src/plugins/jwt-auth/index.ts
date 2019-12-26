@@ -1,5 +1,5 @@
 import { IPlugin, IPluginOptions } from "../interfaces";
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
 import { IUser, UserModel } from "../../api/users/user";
 import { IRequest } from "../../interfaces/request";
 

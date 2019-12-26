@@ -51,10 +51,15 @@ Have fun :)
 >不要安装依赖
 
 #### 1.1 编译 hapi docker + mongodb docker
->1.1.1 删除 ```node_modules```文件夹
+>>1.1.1  修改 ```configurations / database / connectionString``` : ```mongodb://localhost:27017/taskdb-prod``` 为 ```mongodb://mongodb/taskdb-prod```
+>1.1.2 
 ```bash
-docker-compose up -d
+#docker-compose up -d
+docker run -p 27017:27017 --name app-mongo mongo
 ```
+
+>To rebuild this image you must use ```docker-compose build``` or ```docker-compose up --build```
+
 >1.1.2 关闭 hapi docker 容器,保留 mongodb docker 容器运行
 
 ### 2 开始本地开发
@@ -77,15 +82,18 @@ npm run watch
 ***
 ### 3 单独测试 hapi 容器
 #### 3.1 启动 hapi
+
 ```bash
-#本地测试需要删除 node_modules
+docker run -p 27017:27017 --name app-mongo mongo
 docker image build -t app:v1 .
+docker run app:v1
+#docker start app:v1
 ```
 
 #### 或者 启动 hapi + mongodb
 ```bash
-#本地测试需要删除 node_modules
-docker-compose up -d
+#docker-compose up -d
+docker run -p 27017:27017 --name app-mongo mongo
 ```
 
 ***
@@ -138,3 +146,26 @@ pm2 start build/src/index.js -i max --watch  # 根据机器CPU核数，开启对
 ```
 mongodb://user:password@host:port/router
 ```
+
+#### todo
+>```@hapi/boom``` 8.x 更新后需要同步依赖
+
+### ```configurations / database / connectionString```
+
+#### 本地 node docker + mongo docker 使用 componse
+>```mongodb://mongodb:27017/taskdb-prod```
+
+#### 本地 node 实时编译 + mongo docker 
+>```mongodb://localhost:27017/taskdb-dev```
+
+#### 本地 node 实时编译 + mongo docker 不使用 componse
+>```mongodb://localhost:27017/taskdb-dev```
+
+#### 正式 node docker + 公有云 mongo  不使用 componse
+>```mongodb://user:password@host:port/router```
+
+#### 正式 node docker + mongo docker 使用 componse
+>```mongodb://mongodb/taskdb-prod```
+
+#### 测试
+```curl "mongodb:27017"```

@@ -1,4 +1,4 @@
-import * as Hapi from "hapi";
+import * as Hapi from "@hapi/hapi";
 
 export interface ICredentials extends Hapi.AuthCredentials {
   id: string;
@@ -10,6 +10,9 @@ export interface IRequestAuth extends Hapi.RequestAuth {
 
 export interface IRequest extends Hapi.Request {
   auth: IRequestAuth;
+  payload:any;
+  params:any;
+  query:any;
 }
 
 export interface ILoginRequest extends IRequest {

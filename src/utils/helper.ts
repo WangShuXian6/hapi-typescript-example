@@ -2,7 +2,7 @@ import * as Jwt from "jsonwebtoken";
 import * as Mongoose from "mongoose";
 import { getDatabaseConfig, getServerConfigs, IServerConfigurations } from "../configurations";
 import { LoggingModel } from "../plugins/logging/logging";
-import * as Boom from "boom";
+import * as Boom from "@hapi/boom";
 
 let config: any = getServerConfigs();
 

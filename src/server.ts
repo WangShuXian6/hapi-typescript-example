@@ -1,5 +1,5 @@
-import * as Hapi from "hapi";
-import * as Boom from "boom";
+import * as Hapi from "@hapi/hapi";
+import * as Boom from "@hapi/boom";
 import { IPlugin } from "./plugins/interfaces";
 import { IServerConfigurations } from "./configurations";
 import * as Logs from "./plugins/logging";

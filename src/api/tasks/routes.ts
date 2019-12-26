@@ -1,5 +1,5 @@
-import * as Hapi from "hapi";
-import * as Joi from "joi";
+import * as Hapi from "@hapi/hapi";
+import * as Joi from "@hapi/joi";
 import TaskController from "./task-controller";
 import * as TaskValidator from "./task-validator";
 import { jwtValidator } from "../users/user-validator";
@@ -23,9 +23,10 @@ export default function (
       tags: ["api", "tasks"],
       description: "Get task by id.",
       validate: {
-        params: {
-          id: Joi.string().required()
-        },
+        // params: {
+        //   id: Joi.string().required()
+        // },
+        params: Joi.object({id: Joi.string().required()}),
         headers: jwtValidator
       },
       plugins: {
@@ -52,10 +53,14 @@ export default function (
       tags: ["api", "tasks"],
       description: "Get all tasks.",
       validate: {
-        query: {
+        // query: {
+        //   top: Joi.number().default(5),
+        //   skip: Joi.number().default(0)
+        // },
+        query:Joi.object({
           top: Joi.number().default(5),
           skip: Joi.number().default(0)
-        },
+        }),
         headers: jwtValidator
       }
     }
@@ -70,9 +75,10 @@ export default function (
       tags: ["api", "tasks"],
       description: "Delete task by id.",
       validate: {
-        params: {
-          id: Joi.string().required()
-        },
+        // params: {
+        //   id: Joi.string().required()
+        // },
+        params:Joi.object({id: Joi.string().required()}),
         headers: jwtValidator
       },
       plugins: {
@@ -99,9 +105,10 @@ export default function (
       tags: ["api", "tasks"],
       description: "Update task by id.",
       validate: {
-        params: {
-          id: Joi.string().required()
-        },
+        // params: {
+        //   id: Joi.string().required()
+        // },
+        params:Joi.object({id: Joi.string().required()}),
         payload: TaskValidator.updateTaskModel,
         headers: jwtValidator
       },
