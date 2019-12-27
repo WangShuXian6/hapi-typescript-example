@@ -18,12 +18,19 @@ RUN chmod -R 777 /app
 # build process
 RUN npm install
 RUN npm run build
+
+
+RUN npm run pages-to-root
+RUN npm run generate
+RUN npm run pages-to-build
+
 RUN npm prune --production
 
 # run the container using a specific user
 USER user-app
 
 EXPOSE 8080
+
 
 # run application
 CMD ["npm", "start"]

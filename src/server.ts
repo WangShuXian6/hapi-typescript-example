@@ -5,6 +5,7 @@ import { IServerConfigurations } from "./configurations";
 import * as Logs from "./plugins/logging";
 import * as Tasks from "./api/tasks";
 import * as Users from "./api/users";
+import * as Healths from "./api/health";
 import { IDatabase } from "./database";
 
 export async function init(
@@ -14,7 +15,7 @@ export async function init(
   try {
     const port = process.env.PORT || configs.port;
     const server = new Hapi.Server({
-      debug: { request: ['error'] },
+      debug: { request: ["error"] },
       port: port,
       routes: {
         cors: {
@@ -50,6 +51,7 @@ export async function init(
 
     console.log("Register Routes");
     Logs.init(server, configs, database);
+    Healths.init(server, configs, database);
     Tasks.init(server, configs, database);
     Users.init(server, configs, database);
     console.log("Routes registered sucessfully.");

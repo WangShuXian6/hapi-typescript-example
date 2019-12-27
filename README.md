@@ -63,19 +63,30 @@ docker run -p 27017:27017 --name app-mongo mongo
 >1.1.2 关闭 hapi docker 容器,保留 mongodb docker 容器运行
 
 ### 2 开始本地开发
-#### 2.1 实时编译
+#### 2.1 初始化
+
+```bash
+npm run build
+```
+#### 2.2 实时编译 serve
 
 ```bash
 npm run tsc-watch
 ```
 
-#### 2.2 实时重载代码
+#### 2.3 实时编译 vue
+
+```bash
+npm run watch:vue
+```
+
+#### 2.4 实时重载serve代码
 
 ```bash
 npm run watch
 ```
 
-#### 2.3 本地开发地址
+#### 2.5 本地开发地址
 >http://localhost:5000/
 
 
